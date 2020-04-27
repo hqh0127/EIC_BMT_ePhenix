@@ -1,0 +1,37 @@
+void DrawMatScan(const char* name="svtx"){
+	TString hname = "pipe_" + TString(name) + "_ave_theta";
+	TFile* f = new TFile("materialscan.root");
+	TH1F* h0 = (TH1F*)f->Get("pipe_ave_theta");
+	TH1F* h1 = (TH1F*)f->Get("pipe_mvtx_ave_theta");
+	TH1F* h2 = (TH1F*)f->Get(hname.Data());
+	h1->SetFillColor(kGray);
+	h2->SetFillColor(kGreen);
+	TCanvas* c = new TCanvas("c1","c1");
+	c->SetLeftMargin(0.12);
+	h2->Draw();
+	h2->GetYaxis()->SetRangeUser(0,h2->GetMaximum()/0.9);
+	h1->Draw("same");
+	h0->Draw("same");
+	TLegend* leg = new TLegend(0.36, 0.72, 0.66, 0.87);
+	leg->AddEntry(h0, "Beampipe", "f");
+	leg->AddEntry(h1, "Si Vertex Detector", "f");
+	leg->AddEntry(h2, "2D BMT equally spaced", "f");
+	//leg->SetFillStyle(0);
+	//leg->Draw();
+	TLine *l1 = new TLine(-4,0.05,4,0.05);
+	l1->SetLineColor(kRed);
+	l1->SetLineStyle(9);
+	l1->SetLineWidth(2);
+	l1->Draw();
+	l1 = new TLine(-1,0,-1,h2->GetMaximum());
+	l1->SetLineColor(kBlack);
+	l1->SetLineStyle(2);
+	l1->SetLineWidth(2);
+	l1->Draw();
+	l1 = new TLine(1,0,1,h2->GetMaximum());
+	l1->SetLineColor(kBlack);
+	l1->SetLineStyle(2);
+	l1->SetLineWidth(2);
+	l1->Draw();
+	leg->Draw();
+}
