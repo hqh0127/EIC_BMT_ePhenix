@@ -99,7 +99,7 @@ int Fun4All_G4_EICDetector(
   bool do_bbc = false;
 
   // whether to simulate the Be section of the beam pipe
-  bool do_pipe = true;
+  bool do_pipe = false;
   // EIC beam pipe extension beyond the Be-section can be turned on with use_forward_pipes = true in G4_Pipe_EIC.C
 
   bool do_tracking = true;
