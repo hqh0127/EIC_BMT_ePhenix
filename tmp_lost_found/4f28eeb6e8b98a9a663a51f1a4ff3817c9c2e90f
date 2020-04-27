@@ -1,0 +1,50 @@
+(base) [Mon 27 Apr][00:53:59]:matscan_dat> root materialscan.root
+root [0]
+Attaching file materialscan.root as _file0...
+(TFile *) 0x5614d2bfeb00
+root [1] TBrowser a
+(TBrowser &) Name: Browser Title: ROOT Object Browser
+root [2] pipe_mvtx_ave_theta
+(TH1F *) 0x5614d476f170
+root [3] pipe_mvtx_ave_theta->SetFillColor(kGrey)
+input_line_99:2:52: error: use of undeclared identifier 'kGrey'
+ (((*(class TH1F **)0x7f45e75a7080))->SetFillColor(kGrey))
+                                                   ^
+Error in <HandleInterpreterException>: Error evaluating expression (((*(class TH1F **)0x7f45e75a7080))->SetFillColor(kGrey)).
+Execution of your code was aborted.
+root [4] pipe_mvtx_ave_theta->SetFillColor(kGray)
+root [5] pipe_mvtx_ave_theta->Draw("sames")
+root [6] pipe_mvtx_ave_theta->Draw("sames")
+root [7] pipe_BMT_2D_equalspace_ave_theta->SetFillColor(kGreen)
+root [8] pipe_BMT_2D_equalspace_ave_theta->Draw()
+root [9] pipe_mvtx_ave_theta->Draw("sames")
+root [10] pipe_ave_theta->Draw("sames")
+root [11] TLegend l
+(TLegend &) Name: TPave Title: Legend of markers/lines/boxes to represent obj's
+root [12] l.AddEntry(pipe_ave_theta,"fl")
+(TLegendEntry *) 0x5614d4e88ea0
+root [13] l.AddEntry(pipe_mvtx_ave_theta,"fl")
+(TLegendEntry *) 0x5614d4e1e880
+root [14] l.AddEntry(pipe_BMT_2D_equalspace_ave_theta,"fl")
+(TLegendEntry *) 0x5614d4e033d0
+root [15] l.Draw()
+root [16] l.Delete()
+root [17] gPad->Modif
+Modified
+Modify
+root [17] gPad->Modified()
+root [18] l.AddEntry(pipe_ave_theta,"Beampipe","f")
+(TLegendEntry *) 0x5614d4f3ccc0
+root [19] l.AddEntry(pipe_mvtx_ave_theta,"Si Vertex Detector""fl")
+(TLegendEntry *) 0x5614d4f429a0
+root [20] gPad->Modified()
+root [21] l.AddEntry(pipe_mvtx_ave_theta,"Si Vertex Detector","f")
+(TLegendEntry *) 0x5614d4dc23f0
+root [22] l.AddEntry(pipe_BMT_2D_equalspace_ave_theta,"2D BMT equal spaced","f")
+(TLegendEntry *) 0x5614d4e1a800
+root [23] gPad->Modified()
+root [24] gPad->Print("2D_BMT_equal_spaced_matscan.pdf")
+Info in <TCanvas::Print>: pdf file 2D_BMT_equal_spaced_matscan.pdf has been created
+root [25] gPad->Print("2D_BMT_equal_spaced_matscan.png")
+Info in <TCanvas::Print>: file 2D_BMT_equal_spaced_matscan.png has been created
+root [26]

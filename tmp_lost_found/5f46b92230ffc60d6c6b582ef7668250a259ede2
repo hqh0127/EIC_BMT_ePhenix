@@ -1,0 +1,12 @@
+/run/verbose 2
+/run/initialize
+/vis/scene/create
+/vis/open OGL
+/vis/sceneHandler/create OGL
+/vis/sceneHandler/attach
+/vis/viewer/create ! ! 600
+/vis/viewer/refresh
+/vis/scene/notifyHandlers
+/control/matScan/phi 10 0.100000 359.799988 deg
+/control/matScan/theta  100 -88.000000 176.000000 deg
+/control/matScan/scan
