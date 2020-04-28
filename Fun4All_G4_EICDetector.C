@@ -96,10 +96,10 @@ int Fun4All_G4_EICDetector(
   //======================
 
   // sPHENIX barrel
-  bool do_bbc = false;
+  bool do_bbc = true;
 
   // whether to simulate the Be section of the beam pipe
-  bool do_pipe = false;
+  bool do_pipe = true;
   // EIC beam pipe extension beyond the Be-section can be turned on with use_forward_pipes = true in G4_Pipe_EIC.C
 
   bool do_tracking = true;
@@ -199,9 +199,10 @@ int Fun4All_G4_EICDetector(
   G4Init(do_tracking,do_cemc,do_hcalin,do_magnet,do_hcalout,do_pipe,do_plugdoor,do_FEMC,do_FHCAL,do_EEMC,do_DIRC,do_RICH,do_Aerogel);
 
   int absorberactive = 0; // set to 1 to make all absorbers active volumes
-  //  const string magfield = "1.5"; // alternatively to specify a constant magnetic field, give a float number, which will be translated to solenoidal field in T, if string use as fieldmap name (including path)
-  const string magfield = string(getenv("CALIBRATIONROOT")) + string("/Field/Map/sPHENIX.2d.root"); // default map from the calibration database
-  const float magfield_rescale = -1.4/1.5; // scale the map to a 1.4 T field. Reverse field sign to get around a bug in RAVE
+  const string magfield = "1.5"; // alternatively to specify a constant magnetic field, give a float number, which will be translated to solenoidal field in T, if string use as fieldmap name (including path)
+  //const string magfield = string(getenv("CALIBRATIONROOT")) + string("/Field/Map/sPHENIX.2d.root"); // default map from the calibration database
+  //const float magfield_rescale = -1.4/1.5; // scale the map to a 1.4 T field. Reverse field sign to get around a bug in RAVE
+  const float magfield_rescale = -1.5/1.5; // scale the map to a 1.4 T field. Reverse field sign to get around a bug in RAVE
 
   //---------------
   // Fun4All server
@@ -320,10 +321,11 @@ int Fun4All_G4_EICDetector(
         }
       gen->set_vertex_size_function(PHG4SimpleEventGenerator::Uniform);
       gen->set_vertex_size_parameters(0.0, 0.0);
-      gen->set_eta_range(-3, 3);
+      //gen->set_eta_range(-3, 3);
+      gen->set_eta_range(0, 0);
       gen->set_phi_range(-1.0 * TMath::Pi(), 1.0 * TMath::Pi());
       //gen->set_pt_range(0.1, 50.0);
-      gen->set_pt_range(0.1, 20.0);
+      gen->set_pt_range(25., 25.);
       gen->Embed(1);
       gen->Verbosity(0);
 

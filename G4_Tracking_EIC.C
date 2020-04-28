@@ -21,10 +21,10 @@ R__LOAD_LIBRARY(libg4trackfastsim.so)
 void TrackingInit(int verbosity = 0)
 {
   /* electron-going side detectors */
-  //EGEM_Init();
+  EGEM_Init();
 
   /* hadron-going side detectors */
-  //FGEM_Init();
+  FGEM_Init();
 
   /* central detectors */
   SvtxInit();
@@ -35,10 +35,10 @@ double Tracking(PHG4Reco *g4Reco, double radius,
                 int verbosity = 0)
 {
   /* Place electron-going side tracking detectors */
-  //EGEMSetup(g4Reco);
+  EGEMSetup(g4Reco);
 
   /* Place hadron-going side tracking detectors */
-  //FGEMSetup(g4Reco);
+  FGEMSetup(g4Reco);
 
   /* Place central tracking detectors */
   Svtx(g4Reco, radius);
@@ -61,6 +61,12 @@ void Tracking_Reco(int verbosity = 0, bool displaced_vertex = false)
   //---------------
 
   Fun4AllServer *se = Fun4AllServer::instance();
+
+  bool use_2Dreadout = false;
+  if (!use_2Dreadout){
+    CreateCZHitContainer* cz = new CreateCZHitContainer("SVTX");
+    se->registerSubsystem(cz);
+  }
 
   PHG4TrackFastSim *kalman = new PHG4TrackFastSim("PHG4TrackFastSim");
   kalman->Verbosity(verbosity);
@@ -96,6 +102,7 @@ void Tracking_Reco(int verbosity = 0, bool displaced_vertex = false)
       0                            //      const float noise
   );
 
+  /*
   // GEM0, 70um azimuthal resolution, 1cm radial strips
   kalman->add_phg4hits(
       "G4HIT_EGEM_0",                    //      const std::string& phg4hitsNames,
@@ -157,8 +164,10 @@ void Tracking_Reco(int verbosity = 0, bool displaced_vertex = false)
       1,                                 //      const float eff,
       0                                  //      const float noise
   );
+  */
   //
   // TPC
+  /*
   kalman->add_phg4hits(
       "G4HIT_SVTX",                //      const std::string& phg4hitsNames,
       PHG4TrackFastSim::Cylinder,  //      const DETECTOR_TYPE phg4dettype,
@@ -168,8 +177,34 @@ void Tracking_Reco(int verbosity = 0, bool displaced_vertex = false)
       1,                           //      const float eff,
       0                            //      const float noise
   );
+  */
+
+  // BMT
+  if (use_2Dreadout) {
+    kalman->add_phg4hits(
+        "G4HIT_SVTX",                //      const std::string& phg4hitsNames,
+        PHG4TrackFastSim::Cylinder,  //      const DETECTOR_TYPE phg4dettype,
+        1,                           //      const float radres,
+        150e-4,                      //      const float phires,
+        150e-4,                      //      const float lonres,
+        1,                           //      const float eff,
+        0                            //      const float noise
+    );
+  }
+  else {
+    kalman->add_phg4hits(
+        "G4HIT_CZSVTX",                //      const std::string& phg4hitsNames,
+        PHG4TrackFastSim::Cylinder,  //      const DETECTOR_TYPE phg4dettype,
+        1,                           //      const float radres,
+        150e-4,                      //      const float phires,
+        150e-4,                      //      const float lonres,
+        1,                           //      const float eff,
+        0                            //      const float noise
+    );
+  }
 
   // LANL FST:   We could put the hit resolution at 5 micron with the 30 micron pixel pitch.
+  /*
   kalman->add_phg4hits(
       "G4HIT_FST_2",                    //      const std::string& phg4hitsNames,
       PHG4TrackFastSim::Vertical_Plane,  //      const DETECTOR_TYPE phg4dettype,
@@ -245,9 +280,10 @@ void Tracking_Reco(int verbosity = 0, bool displaced_vertex = false)
       1,                                 //      const float eff,
       0                                  //      const float noise
   );
+  */
   // Saved track states (projections)
-  kalman->add_state_name("FEMC");
-  kalman->add_state_name("FHCAL");
+  //kalman->add_state_name("FEMC");
+  //kalman->add_state_name("FHCAL");
 
   se->registerSubsystem(kalman);
 

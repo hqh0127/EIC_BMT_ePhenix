@@ -300,12 +300,12 @@ double Svtx(PHG4Reco* g4Reco, double radius,
   double cage_length = 211.0;  // From TPC group, gives eta = 1.1 at 78 cm
   double n_rad_length_cage = 1.13e-02;
   double cage_thickness = 28.6 * n_rad_length_cage;  // Kapton X_0 = 28.6 cm  // mocks up Kapton + carbon fiber structure
-  
-	bool istpc = false;
+
+  bool istpc = false;
 
   // inner field cage
   /**/
-	if(0){
+	if(1){
 	if (istpc){
   cyl = new PHG4CylinderSubsystem("SVTXSUPPORT", n_maps_layer + n_intt_layer);
   cyl->set_double_param("radius", radius);
@@ -424,7 +424,7 @@ double Svtx(PHG4Reco* g4Reco, double radius,
   double BMT_outer_radius = 78.; //80;
   double BMT_inner_radius = inner_cage_radius;
   int nCZlayer = 2;
-  bool use_2Dreadout = true;
+  bool use_2Dreadout = false;
   if (use_2Dreadout) {
     gap_betweenCZ = 0;
     nCZlayer = 1;
@@ -438,14 +438,14 @@ double Svtx(PHG4Reco* g4Reco, double radius,
   //double bmt_length = (1-exp(-2*prapidity))/exp(-prapidity)*80;
   double bmt_length = cage_length;
   for (int ilayer = 0; ilayer< 6; ilayer++){
-    example01 = new PHG4CylinderStripSubsystem("BMT",ilayer);
+    example01 = new PHG4CylinderStripSubsystem("SVTX",ilayer);
     example01->set_double_param("radius", BMT_r[ilayer]);
     example01->set_string_param("gas", "myMMGas");
     //example01->set_double_param("steplimits", 300e-4);
     example01->set_double_param("phi0", 15*ilayer);
     example01->set_double_param("gap", gap_betweenCZ);
     example01->SetActive();
-    example01->SuperDetector("BMT");
+    example01->SuperDetector("SVTX");
     example01->set_int_param("lengthviarapidity",0);
     example01->set_double_param("length", bmt_length);
     example01->OverlapCheck(true);
