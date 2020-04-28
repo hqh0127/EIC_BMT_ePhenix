@@ -301,7 +301,7 @@ double Svtx(PHG4Reco* g4Reco, double radius,
   double n_rad_length_cage = 1.13e-02;
   double cage_thickness = 28.6 * n_rad_length_cage;  // Kapton X_0 = 28.6 cm  // mocks up Kapton + carbon fiber structure
 
-  bool istpc = true;
+  bool istpc = false;
 
   // inner field cage
   /**/
@@ -424,7 +424,7 @@ double Svtx(PHG4Reco* g4Reco, double radius,
   double BMT_outer_radius = 78.; //80;
   double BMT_inner_radius = inner_cage_radius;
   int nCZlayer = 2;
-  bool use_2Dreadout = false;
+  bool use_2Dreadout = true;
   if (use_2Dreadout) {
     gap_betweenCZ = 0;
     nCZlayer = 1;
