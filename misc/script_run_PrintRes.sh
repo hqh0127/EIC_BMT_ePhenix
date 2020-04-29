@@ -30,6 +30,6 @@ mv G4EICDetector.root_g4tracking_eval.root ${WORK}/${FNAME}
 
 popd
 
-root.exe -l -b -q "PrintRes.cpp(\"${FNAME}\", ${ETA}, ${PT})"
+root.exe -l -b -q "PrintRes.cpp(\"${FNAME}\", ${ETA}, ${PT}, \"${DETECTOR}\")"
 
 popd
