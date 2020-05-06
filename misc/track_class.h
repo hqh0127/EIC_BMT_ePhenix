@@ -11,6 +11,7 @@
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
+#include <TTree.h>
 
 // Header file for the classes stored in the TTree if any.
 
@@ -181,6 +182,9 @@ Int_t track_class::Cut(Long64_t entry)
 // This function may be called from Loop.
 // returns  1 if entry is accepted.
 // returns -1 otherwise.
-   return 1;
+   if (nhits > -9999)
+      return 1;
+   else
+      return -1;
 }
 #endif // #ifdef track_class_cxx
