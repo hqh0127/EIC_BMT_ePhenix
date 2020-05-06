@@ -256,10 +256,12 @@ void plot_matscan_ave(const char *datfile, const int plot_theta = 0)
       return;
     }
   float theta;
+  float theta0;
   float path;
   float x0;
   float lamda0;
   vector<float> thetavec;
+  vector<float> theta0vec;
   vector<float> x0vec;
   vector<float> lamda0vec;
   float thetamin = 10;
@@ -270,6 +272,7 @@ void plot_matscan_ave(const char *datfile, const int plot_theta = 0)
   float lamda0max = -100000;
   while(fscanf(f,"%f %f %f %f",&theta,&path,&x0,&lamda0) != EOF)
     {
+      theta0 = theta;
       theta = (theta+90)/180.*M_PI;
       theta =  log(TMath::Tan(theta/2.));
       cout << "eta: " << theta
@@ -302,6 +305,7 @@ void plot_matscan_ave(const char *datfile, const int plot_theta = 0)
 	  lamda0min = lamda0;
 	}
       thetavec.push_back(theta);
+      theta0vec.push_back(theta0);
       x0vec.push_back(x0);
       lamda0vec.push_back(lamda0);
     }
@@ -328,8 +332,19 @@ void plot_matscan_ave(const char *datfile, const int plot_theta = 0)
   xmin = thetamin;
   xmax = thetamax;
   
-  double binsize = (thetamax - thetamin)/(thetavec.size()-1);
-	TH1F* h1 = new TH1F("hX0_0", ";#eta;X/X_{0}", thetavec.size(), xmin-binsize/2, xmax+binsize/2);
+  //double binsize = (thetamax - thetamin)/(thetavec.size()-1);
+  double* xbins = new double [thetavec.size()+1];
+  double binsize = (theta0vec[thetavec.size()-1] - theta0vec[0])/(thetavec.size()-1);
+  for (int i=0; i< thetavec.size(); i++){
+    xbins[i] = theta0vec[i]-binsize/2;
+    xbins[i] = (xbins[i]+90)/180.*M_PI;
+    xbins[i] =  log(TMath::Tan(xbins[i]/2.));
+  }
+  xbins[thetavec.size()] = theta0vec[thetavec.size()-1] + binsize/2;
+  xbins[thetavec.size()] = (xbins[thetavec.size()]+90)/180.*M_PI;
+  xbins[thetavec.size()] =  log(TMath::Tan(xbins[thetavec.size()]/2.));
+
+	TH1F* h1 = new TH1F("hX0_0", ";#eta;X/X_{0}", thetavec.size(), xbins);
 	
 	for (int i=1; i<= h1->GetNbinsX(); i++)
 		h1->SetBinContent(i, x0arr[i-1]);

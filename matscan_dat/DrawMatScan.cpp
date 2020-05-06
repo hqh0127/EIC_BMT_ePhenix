@@ -1,4 +1,12 @@
 void DrawMatScan(const char* name="svtx"){
+
+  std::map<TString, TString> labels;
+  labels[TString("svtx")] = TString("TPC");
+  labels[TString("BMT_1D_equalspace")] = TString("1D BMT equally spaced");
+  labels[TString("BMT_2D_equalspace")] = TString("2D BMT equally spaced");
+  labels[TString("BMT_1D_gap_15mm")] = TString("1D BMT 3#times2 w/ 15mm");
+  labels[TString("BMT_2D_gap_15mm")] = TString("2D BMT 3#times2 w/ 15mm");
+
 	TString hname = "pipe_" + TString(name) + "_ave_theta";
 	TFile* f = new TFile("materialscan.root");
 	TH1F* h0 = (TH1F*)f->Get("pipe_ave_theta");
@@ -9,16 +17,18 @@ void DrawMatScan(const char* name="svtx"){
 	TCanvas* c = new TCanvas("c1","c1");
 	c->SetLeftMargin(0.12);
 	h2->Draw();
-	h2->GetYaxis()->SetRangeUser(0,h2->GetMaximum()/0.9);
+	h2->GetYaxis()->SetRangeUser(0,0.128);
+	h2->GetXaxis()->SetRangeUser(-3,3);
 	h1->Draw("same");
 	h0->Draw("same");
 	TLegend* leg = new TLegend(0.36, 0.72, 0.66, 0.87);
 	leg->AddEntry(h0, "Beampipe", "f");
 	leg->AddEntry(h1, "Si Vertex Detector", "f");
-	leg->AddEntry(h2, "2D BMT equally spaced", "f");
+	leg->AddEntry(h2, labels[TString(name)].Data(), "f");
 	//leg->SetFillStyle(0);
 	//leg->Draw();
-	TLine *l1 = new TLine(-4,0.05,4,0.05);
+  c->Update();
+	TLine *l1 = new TLine(c->GetUxmin(),0.05,c->GetUxmax(),0.05);
 	l1->SetLineColor(kRed);
 	l1->SetLineStyle(9);
 	l1->SetLineWidth(2);
