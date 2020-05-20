@@ -301,11 +301,11 @@ double Svtx(PHG4Reco* g4Reco, double radius,
   double n_rad_length_cage = 1.13e-02;
   double cage_thickness = 28.6 * n_rad_length_cage;  // Kapton X_0 = 28.6 cm  // mocks up Kapton + carbon fiber structure
 
-  bool istpc = false;
+  bool istpc = true;
 
   // inner field cage
   /**/
-	if(0){
+	if(1){
 	if (istpc){
   cyl = new PHG4CylinderSubsystem("SVTXSUPPORT", n_maps_layer + n_intt_layer);
   cyl->set_double_param("radius", radius);
