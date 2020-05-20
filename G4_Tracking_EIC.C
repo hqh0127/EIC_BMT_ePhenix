@@ -2,12 +2,12 @@
 #if ROOT_VERSION_CODE >= ROOT_VERSION(6, 00, 0)
 #include <fun4all/Fun4AllServer.h>
 #include <g4eval/SvtxEvaluator.h>
-#include <g4trackfastsim/PHG4TrackFastSim.h>
+#include <g4trackfastsim_dirc/PHG4TrackFastSim.h>
 #include <trackreco/PHRaveVertexing.h>
-#include <g4trackfastsim/PHG4TrackFastSimEval.h>
+#include <g4trackfastsim_dirc/PHG4TrackFastSimEval.h>
 class SubsysReco;
 R__LOAD_LIBRARY(libtrack_reco.so)
-R__LOAD_LIBRARY(libg4trackfastsim.so)
+R__LOAD_LIBRARY(libg4trackfastsim_dirc.so)
 #endif
 
 #include <vector>
@@ -288,6 +288,9 @@ void Tracking_Reco(int verbosity = 0, bool displaced_vertex = false)
   // Saved track states (projections)
   //kalman->add_state_name("FEMC");
   //kalman->add_state_name("FHCAL");
+  //kalman->add_state_name("CEMC");
+  kalman->add_state_name("DIRC");
+  kalman->add_state_name("DIRCinv");
 
   se->registerSubsystem(kalman);
 

@@ -457,6 +457,17 @@ double Svtx(PHG4Reco* g4Reco, double radius,
 	}
 	}
 
+  cyl = new PHG4CylinderSubsystem("AIRDIRC");
+  cyl->set_double_param("radius", 81.5);
+  cyl->set_int_param("lengthviarapidity", 0);
+  cyl->set_double_param("length", cage_length);
+  cyl->set_string_param("material", "G4_AIR");
+  cyl->SetActive();
+  cyl->SuperDetector("AIRDIRC");
+  cyl->set_double_param("thickness", 1e-4);
+  cyl->Verbosity(0);
+  g4Reco->registerSubsystem(cyl);
+
   return radius;
 }
 
