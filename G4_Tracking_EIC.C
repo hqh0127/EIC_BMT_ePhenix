@@ -62,7 +62,7 @@ void Tracking_Reco(int verbosity = 0, bool displaced_vertex = false)
 
   Fun4AllServer *se = Fun4AllServer::instance();
 
-  bool use_2Dreadout = true;
+  bool use_2Dreadout = false;
   if (!use_2Dreadout){
     CreateCZHitContainer* cz = new CreateCZHitContainer("SVTX");
     se->registerSubsystem(cz);

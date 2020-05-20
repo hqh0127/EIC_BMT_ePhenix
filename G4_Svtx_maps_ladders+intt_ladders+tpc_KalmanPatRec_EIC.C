@@ -424,7 +424,7 @@ double Svtx(PHG4Reco* g4Reco, double radius,
   double BMT_outer_radius = 78.; //80;
   double BMT_inner_radius = inner_cage_radius;
   int nCZlayer = 2;
-  bool use_2Dreadout = true;
+  bool use_2Dreadout = false;
   if (use_2Dreadout) {
     gap_betweenCZ = 0;
     nCZlayer = 1;
