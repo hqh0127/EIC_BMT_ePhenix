@@ -172,7 +172,7 @@ int G4Setup(const int absorberactive = 0,
   PHG4Reco* g4Reco = new PHG4Reco();
   //g4Reco->SetWorldMaterial("G4_Galactic");
   g4Reco->SetWorldSizeZ(220);
-  g4Reco->SetWorldSizeY(81.5);
+  g4Reco->SetWorldSizeY(163);
   g4Reco->set_rapidity_coverage(1.1); // according to drawings
 // uncomment to set QGSP_BERT_HP physics list for productions 
 // (default is QGSP_BERT for speed)
