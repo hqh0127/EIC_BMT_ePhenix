@@ -429,7 +429,7 @@ double Svtx(PHG4Reco* g4Reco, double radius,
     gap_betweenCZ = 0;
     nCZlayer = 1;
   }
-  Gap_betweenlayer = (BMT_outer_radius-BMT_inner_radius-nCZlayer*thickness-gap_betweenCZ)/5.-(nCZlayer*thickness + gap_betweenCZ); // this is to create equal spaced 2D readout layers
+  //Gap_betweenlayer = (BMT_outer_radius-BMT_inner_radius-nCZlayer*thickness-gap_betweenCZ)/5.-(nCZlayer*thickness + gap_betweenCZ); // this is to create equal spaced 2D readout layers
   double BMT_mid_radius = (BMT_inner_radius+BMT_outer_radius)/2.;
 
   double BMT_r[6] = {BMT_inner_radius, BMT_inner_radius+nCZlayer*thickness+gap_betweenCZ+Gap_betweenlayer, BMT_mid_radius-nCZlayer*thickness-gap_betweenCZ-Gap_betweenlayer/2, BMT_mid_radius+Gap_betweenlayer/2, BMT_outer_radius-(nCZlayer*thickness+gap_betweenCZ)*2-Gap_betweenlayer, BMT_outer_radius-nCZlayer*thickness-gap_betweenCZ};
