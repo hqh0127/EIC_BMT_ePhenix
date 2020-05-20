@@ -62,13 +62,11 @@ void Tracking_Reco(int verbosity = 0, bool displaced_vertex = false)
 
   Fun4AllServer *se = Fun4AllServer::instance();
 
-  /*
-  bool use_2Dreadout = false;
+  bool use_2Dreadout = true;
   if (!use_2Dreadout){
     CreateCZHitContainer* cz = new CreateCZHitContainer("SVTX");
     se->registerSubsystem(cz);
   }
-  */
 
   PHG4TrackFastSim *kalman = new PHG4TrackFastSim("PHG4TrackFastSim");
   kalman->Verbosity(verbosity);
@@ -170,6 +168,7 @@ void Tracking_Reco(int verbosity = 0, bool displaced_vertex = false)
   //
   // TPC
 
+  /*
   kalman->add_phg4hits(
       "G4HIT_SVTX",                //      const std::string& phg4hitsNames,
       PHG4TrackFastSim::Cylinder,  //      const DETECTOR_TYPE phg4dettype,
@@ -179,10 +178,10 @@ void Tracking_Reco(int verbosity = 0, bool displaced_vertex = false)
       1,                           //      const float eff,
       0                            //      const float noise
   );
+  */
 
 
   // BMT
-  /*
   if (use_2Dreadout) {
     kalman->add_phg4hits(
         "G4HIT_SVTX",                //      const std::string& phg4hitsNames,
@@ -205,7 +204,6 @@ void Tracking_Reco(int verbosity = 0, bool displaced_vertex = false)
         0                            //      const float noise
     );
   }
-  */
 
   // LANL FST:   We could put the hit resolution at 5 micron with the 30 micron pixel pitch.
   /*
