@@ -21,10 +21,10 @@ R__LOAD_LIBRARY(libg4trackfastsim_dirc.so)
 void TrackingInit(int verbosity = 0)
 {
   /* electron-going side detectors */
-  EGEM_Init();
+  //EGEM_Init();
 
   /* hadron-going side detectors */
-  FGEM_Init();
+  //FGEM_Init();
 
   /* central detectors */
   SvtxInit();
@@ -35,10 +35,10 @@ double Tracking(PHG4Reco *g4Reco, double radius,
                 int verbosity = 0)
 {
   /* Place electron-going side tracking detectors */
-  EGEMSetup(g4Reco);
+  //EGEMSetup(g4Reco);
 
   /* Place hadron-going side tracking detectors */
-  FGEMSetup(g4Reco);
+  //FGEMSetup(g4Reco);
 
   /* Place central tracking detectors */
   Svtx(g4Reco, radius);
