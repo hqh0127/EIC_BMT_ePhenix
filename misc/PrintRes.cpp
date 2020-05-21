@@ -1,6 +1,6 @@
 TF1* getFitFunc(TH1F* h);
 
-void PrintRes (const char* fn, const int eta, const float pt, const char* detector){
+void PrintRes (const char* fn, const float eta, const float pt, const char* detector){
   TFile *f = new TFile(fn);
   TTree* tracks = (TTree*)f->Get("tracks");
   tracks->Draw("100*(sqrt(px*px+py*py)/sqrt(gpx*gpx+gpy*gpy)-1)>>h1(5000)", "nhits>-9999 && abs(sqrt(px*px+py*py)/sqrt(gpx*gpx+gpy*gpy)-1)<1","goff");
