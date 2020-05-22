@@ -305,7 +305,7 @@ double Svtx(PHG4Reco* g4Reco, double radius,
 
   // inner field cage
   /**/
-	if(0){
+	if(1){
 	if (istpc){
   cyl = new PHG4CylinderSubsystem("SVTXSUPPORT", n_maps_layer + n_intt_layer);
   cyl->set_double_param("radius", radius);
