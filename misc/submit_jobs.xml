@@ -3,7 +3,7 @@
   <Project name="clas12"/>
   <Track name="debug"/>
   <DiskSpace space="2" unit="GB"></DiskSpace>
-  <Memory space="2" unit="GB"></Memory>
+  <Memory space="1" unit="GB"></Memory>
 
   <Input src="/group/clas12/packages/setup.csh" dest="setup.csh"/>
   <Input src="/work/clas12/users/qihuang/EIC_MM_momres/misc/script_run_PrintRes.sh" dest="script_run_PrintRes.sh"/>
@@ -13,7 +13,7 @@
     MM_6_3x2_1D MM_6_3x2_2D MM_6_eq_1D MM_6_eq_2D TPC
   </List>
   <List name="eta">
-    0 1 3
+    0.9316316147538235 0.4316947267462241 0.017454178683585186
   </List>
   <List name="pt">
     1 2 3 4 5 6 7 8 9 10 20 30 40 50
