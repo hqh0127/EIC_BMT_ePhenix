@@ -62,6 +62,7 @@ void track_class::Loop()
    cout << theta_res << " " << theta_resE << endl;
 }
 
+/*
 void GetAngularRes(const char* dir, const char* det, const int eta, const int pt){
   TString name = Form("%s/G4EICDetector.root_g4tracking_eval_%s_eta%d_%02d.root", dir, det, eta, pt);
   TFile* f = new TFile(name.Data());
@@ -86,3 +87,4 @@ void RunAll(){
       for (int k=0; k<14; k++)
         GetAngularRes(dir, det[i], eta[j], pt[k]);
 }
+*/
