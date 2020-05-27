@@ -160,28 +160,31 @@ void Draw_dp_phi(){
   const char* det = "MM_6_3x2_2D";
   */
 
-  
+
   int deg=89, p=1;
   const char* det = "MM_6_3x2_2D";
-  
+
   TH2D* h = new TH2D("h0", ";#phi;#Deltap/p",1000,0, 2*TMath::Pi(), 1000, -1,1);
   h->SetStats(kFALSE);
   h->Draw("AXIS");
-  //TGraph** gr = Draw_graphs(deg,p,det);
-  //gr[0]->Draw("P same");
-  //gr[1]->SetMarkerColor(kRed);
-  //gr[1]->Draw("P same");
 
+  TGraph** gr = Draw_graphs(deg,p,det);
+  gr[0]->Draw("P same");
+  gr[1]->SetMarkerColor(kRed);
+  gr[1]->Draw("P same");
+
+  /*
   TProfile** gr = Draw_profiles(deg,p,det);
   gr[0]->Draw("same");
   gr[1]->SetMarkerColor(kRed);
   gr[1]->SetLineColor(kRed);
   gr[1]->Draw("same");
+  */
 
   auto legend = new TLegend(0.1,0.7,0.48,0.9);
   legend->AddEntry(gr[0],"At DIRC","lep");
   legend->AddEntry(gr[1],"At Center","lep");
-  legend->Draw();
+  //legend->Draw();
   TPaveText *pt = new TPaveText(.05,.3,.95,.6);
   pt->AddText(Form("deg: %d#circ", deg));
   pt->AddText(Form("p_{T}: %d GeV", p));
