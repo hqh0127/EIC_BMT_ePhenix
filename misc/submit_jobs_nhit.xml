@@ -1,0 +1,52 @@
+<Request>
+  <Email email="hqh0127@gmail.com" request="true" job="true"/>
+  <Project name="clas12"/>
+  <Track name="debug"/>
+  <DiskSpace space="2" unit="GB"></DiskSpace>
+  <Memory space="1" unit="GB"></Memory>
+
+  <Input src="/group/clas12/packages/setup.csh" dest="setup.csh"/>
+  <Input src="/work/clas12/users/qihuang/EIC_MM_momres/misc/script_run_PrintRes.sh" dest="script_run_PrintRes.sh"/>
+  <Input src="/work/clas12/users/qihuang/EIC_MM_momres/misc/PrintRes.cpp" dest="PrintRes.cpp"/>
+  
+  <List name="detector">
+    MM_6_3x2_2D MM_6_eq_2D
+  </List>
+  <List name="eta">
+    0.9316316147538235 0.4316947267462241 0.017454178683585186
+  </List>
+  <List name="pt">
+    1 2 3 4 5 6 7 8 9 10
+  </List>
+  <List name="nhit">
+    1 2 3 5
+  </List>
+
+  <ForEach list="detector">
+    <ForEach list="eta">
+      <ForEach list="pt">
+      <ForEach list="nhit">
+        <Job>
+          <Name name="momres_${detector}_eta${eta}_${pt}_${nhit}"/>
+          <Command><![CDATA[
+            source setup.csh
+            #source /group/clas12/packages/setup.sh
+            module available
+            module load singularity
+            echo $PWD
+            setenv WORK $PWD
+            cd /home/qihuang
+            singularity exec -B /cvmfs:/cvmfs /cvmfs/eic.opensciencegrid.org/singularity/rhic_sl7_ext.simg /bin/sh $WORK/script_run_PrintRes.sh ${detector} ${pt} ${eta} ${nhit}
+            cd $WORK
+            ]]></Command>
+          <Output src="output.log" dest="/work/clas12/users/qihuang/EIC_MM_momres/log/log_${detector}_eta${eta}_${pt}_nhit${nhit}.log"/>
+          <Stdout dest="/work/clas12/users/qihuang/EIC_MM_momres/log/log_${detector}_eta${eta}_${pt}_nhit${nhit}.stdout"/>
+          <Stderr dest="/work/clas12/users/qihuang/EIC_MM_momres/log/log_${detector}_eta${eta}_${pt}_nhit${nhit}.stderr"/>
+        </Job>
+      </ForEach>
+      </ForEach>
+    </ForEach>
+  </ForEach>
+
+</Request>
+<!-- vim: set expandtab shiftwidth=2 tabstop=2: -->

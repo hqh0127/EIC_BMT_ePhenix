@@ -420,7 +420,8 @@ double Svtx(PHG4Reco* g4Reco, double radius,
 	else{
 	
   double gap_betweenCZ = 1.5, Gap_betweenlayer = 1.5;
-  double thickness = 0.355199;
+  //double thickness = 0.355199;
+  double thickness = 0.356499; // 2D thickness (CuStrips == 25um)
   double BMT_outer_radius = 78.; //80;
   double BMT_inner_radius = inner_cage_radius;
   int nCZlayer = 2;
@@ -448,6 +449,8 @@ double Svtx(PHG4Reco* g4Reco, double radius,
     example01->SuperDetector("SVTX");
     example01->set_int_param("lengthviarapidity",0);
     example01->set_double_param("length", bmt_length);
+    example01->set_double_param("deadzone", 0.2);
+    example01->set_int_param("nhit", 2);
     example01->OverlapCheck(true);
     example01->set_int_param("use_2Dreadout",use_2Dreadout);
     g4Reco->registerSubsystem(example01);
@@ -466,6 +469,7 @@ double Svtx(PHG4Reco* g4Reco, double radius,
   cyl->SuperDetector("AIRDIRC");
   cyl->set_double_param("thickness", 1e-4);
   cyl->Verbosity(0);
+  cyl->set_color(0,0,0,0);
   g4Reco->registerSubsystem(cyl);
 
   return radius;

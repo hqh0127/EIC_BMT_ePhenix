@@ -1,8 +1,8 @@
 TF1* getFitFunc(TH1F* h);
 
-void PrintRes (const char* fn, const float eta, const float pt, const char* detector){
+void PrintRes (const char* fn, const float eta, const float pt, const char* detector, const int nhit){
   TFile *f = new TFile(fn);
-  TTree* tracks = (TTree*)f->Get("tracks");
+  TTree* tracks = (TTree*)f->Get("dirc");
   tracks->Draw("100*(sqrt(px*px+py*py)/sqrt(gpx*gpx+gpy*gpy)-1)>>h1(5000)", "nhits>-9999 && abs(sqrt(px*px+py*py)/sqrt(gpx*gpx+gpy*gpy)-1)<1","goff");
   TH1F* h1 = (TH1F*)gDirectory->Get("h1");
   TF1* f1 = getFitFunc(h1);
@@ -19,6 +19,7 @@ void PrintRes (const char* fn, const float eta, const float pt, const char* dete
   cout << "Results output to " << foutname << endl;
   myfile.open (foutname.Data(), ios::out | ios::trunc);
   myfile << detector << " ";
+  myfile << nhit << " ";
   myfile << eta << " " << pt << " ";
   myfile << ptres << " " << ptres_e << " ";
   myfile << pres << " " << pres_e << endl;
