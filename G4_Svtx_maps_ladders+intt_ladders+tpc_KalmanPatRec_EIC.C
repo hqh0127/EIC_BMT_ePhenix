@@ -301,7 +301,7 @@ double Svtx(PHG4Reco* g4Reco, double radius,
   double n_rad_length_cage = 1.13e-02;
   double cage_thickness = 28.6 * n_rad_length_cage;  // Kapton X_0 = 28.6 cm  // mocks up Kapton + carbon fiber structure
 
-  bool istpc = true;
+  bool istpc = false;
 
   // inner field cage
   /**/
@@ -447,6 +447,8 @@ double Svtx(PHG4Reco* g4Reco, double radius,
     example01->SetActive();
     example01->SuperDetector("SVTX");
     example01->set_int_param("lengthviarapidity",0);
+    example01->set_double_param("deadzone", 0.2);
+    example01->set_int_param("nhit", 1);
     example01->set_double_param("length", bmt_length);
     example01->OverlapCheck(true);
     example01->set_int_param("use_2Dreadout",use_2Dreadout);
@@ -465,6 +467,7 @@ double Svtx(PHG4Reco* g4Reco, double radius,
   cyl->SetActive();
   cyl->SuperDetector("AIRDIRC");
   cyl->set_double_param("thickness", 1e-4);
+  cyl->set_color(0,0,0,0);
   cyl->Verbosity(0);
   g4Reco->registerSubsystem(cyl);
 
