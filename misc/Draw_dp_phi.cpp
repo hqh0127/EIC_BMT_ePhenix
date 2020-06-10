@@ -6,13 +6,13 @@ TGraph** Draw_graphs(int deg, int p, const char* detector){
   TGraph** gr = new TGraph* [2];
   gr[0] = nullptr;
   gr[1] = nullptr;
-  string folder = "/local/home/qh261761/CEA/EIC/EICsim/MM_EIC_work_output/work_dirc/";
+  string folder = "/local/home/qh261761/CEA/EIC/EICsim/MM_EIC_work_output/work_withsupport/";
   std::map<int, std::string> deg2eta;
   deg2eta[43] = std::string("0.9316316147538235");
   deg2eta[66] = std::string("0.4316947267462241");
   deg2eta[89] = std::string("0.017454178683585186");
 
-  string filename = folder + "G4EICDetector.root_g4tracking_eval_" + std::string(detector) + "_eta" + deg2eta[deg] + std::string(Form("_%02d.root", p));
+  string filename = folder + "G4EICDetector.root_g4tracking_eval_" + std::string(detector) + "_eta" + deg2eta[deg] + std::string(Form("_%02d_nhit1.root", p));
 
   TFile *f = new TFile(filename.c_str());
   TTree* dirc = (TTree*)f->Get("dirc");
@@ -76,13 +76,13 @@ TProfile** Draw_profiles(int deg, int p, const char* detector){
   TProfile** gr = new TProfile* [2];
   gr[0] = nullptr;
   gr[1] = nullptr;
-  string folder = "/local/home/qh261761/CEA/EIC/EICsim/MM_EIC_work_output/work_dirc/";
+  string folder = "/local/home/qh261761/CEA/EIC/EICsim/MM_EIC_work_output/work_withsupport/";
   std::map<int, std::string> deg2eta;
   deg2eta[43] = std::string("0.9316316147538235");
   deg2eta[66] = std::string("0.4316947267462241");
   deg2eta[89] = std::string("0.017454178683585186");
 
-  string filename = folder + "G4EICDetector.root_g4tracking_eval_" + std::string(detector) + "_eta" + deg2eta[deg] + std::string(Form("_%02d.root", p));
+  string filename = folder + "G4EICDetector.root_g4tracking_eval_" + std::string(detector) + "_eta" + deg2eta[deg] + std::string(Form("_%02d_nhit1.root", p));
 
   TFile *f = new TFile(filename.c_str());
   TTree* dirc = (TTree*)f->Get("dirc");
