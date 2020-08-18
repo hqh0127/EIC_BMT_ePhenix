@@ -2,22 +2,27 @@ void DrawMatScan(const char* name="svtx"){
 
   std::map<TString, TString> labels;
   labels[TString("svtx")] = TString("TPC");
+  labels[TString("svtx_new")] = TString("TPC");
   labels[TString("BMT_1D_equalspace")] = TString("1D BMT equally spaced");
-  labels[TString("BMT_2D_equalspace")] = TString("2D BMT equally spaced");
+  //labels[TString("BMT_2D_equalspace")] = TString("2D BMT equally spaced");
+  labels[TString("BMT_2D_equalspace")] = TString("6-layer MPGD Tracker (2D RO)");
+  labels[TString("BMT_2D_equalspace_new")] = TString("6-layer MPGD Tracker (2D RO)");
+  labels[TString("BMT_2D_equalspace_addsupport")] = TString("6-layer MPGD Tracker (2D RO)");
   labels[TString("BMT_1D_gap_15mm")] = TString("1D BMT 3#times2 w/ 15mm");
   labels[TString("BMT_2D_gap_15mm")] = TString("2D BMT 3#times2 w/ 15mm");
+  labels[TString("BMT_2D_nomiddle_addsupport")] = TString("2D BMT 2-inner 3-outer");
 
 	TString hname = "pipe_" + TString(name) + "_ave_theta";
 	TFile* f = new TFile("materialscan.root");
-	TH1F* h0 = (TH1F*)f->Get("pipe_ave_theta");
-	TH1F* h1 = (TH1F*)f->Get("pipe_mvtx_ave_theta");
+	TH1F* h0 = (TH1F*)f->Get("pipe_only_new_ave_theta");
+	TH1F* h1 = (TH1F*)f->Get("pipe_mvtx_new_ave_theta");
 	TH1F* h2 = (TH1F*)f->Get(hname.Data());
 	h1->SetFillColor(kGray);
 	h2->SetFillColor(kGreen);
 	TCanvas* c = new TCanvas("c1","c1");
 	c->SetLeftMargin(0.12);
 	h2->Draw();
-	h2->GetYaxis()->SetRangeUser(0,0.128);
+	h2->GetYaxis()->SetRangeUser(0,0.08);
 	h2->GetXaxis()->SetRangeUser(-3,3);
 	h1->Draw("same");
 	h0->Draw("same");

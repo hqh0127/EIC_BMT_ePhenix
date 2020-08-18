@@ -433,12 +433,12 @@ double Svtx(PHG4Reco* g4Reco, double radius,
   //Gap_betweenlayer = (BMT_outer_radius-BMT_inner_radius-nCZlayer*thickness-gap_betweenCZ)/5.-(nCZlayer*thickness + gap_betweenCZ); // this is to create equal spaced 2D readout layers
   double BMT_mid_radius = (BMT_inner_radius+BMT_outer_radius)/2.;
 
-  double BMT_r[6] = {BMT_inner_radius, BMT_inner_radius+nCZlayer*thickness+gap_betweenCZ+Gap_betweenlayer, BMT_mid_radius-nCZlayer*thickness-gap_betweenCZ-Gap_betweenlayer/2, BMT_mid_radius+Gap_betweenlayer/2, BMT_outer_radius-(nCZlayer*thickness+gap_betweenCZ)*2-Gap_betweenlayer, BMT_outer_radius-nCZlayer*thickness-gap_betweenCZ};
+  double BMT_r[5] = {BMT_inner_radius, BMT_inner_radius+nCZlayer*thickness+gap_betweenCZ+Gap_betweenlayer, BMT_outer_radius-(nCZlayer*thickness+gap_betweenCZ)*3-2*Gap_betweenlayer, BMT_outer_radius-(nCZlayer*thickness+gap_betweenCZ)*2-Gap_betweenlayer, BMT_outer_radius-nCZlayer*thickness-gap_betweenCZ};
   PHG4CylinderStripSubsystem *example01;
   const double prapidity =1;
   //double bmt_length = (1-exp(-2*prapidity))/exp(-prapidity)*80;
   double bmt_length = cage_length;
-  for (int ilayer = 0; ilayer< 6; ilayer++){
+  for (int ilayer = 0; ilayer< 5; ilayer++){
     example01 = new PHG4CylinderStripSubsystem("SVTX",ilayer);
     example01->set_double_param("radius", BMT_r[ilayer]);
     example01->set_string_param("gas", "myMMGas");
