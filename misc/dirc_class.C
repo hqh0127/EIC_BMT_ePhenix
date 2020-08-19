@@ -128,16 +128,24 @@ void GetAngularRes(const char* dir, const char* det, const string eta, const int
 
 void RunAll(){
   const char* dir = "/local/home/qh261761/CEA/EIC/EICsim/MM_EIC_work_output/work_withsupport";
+  /*
   const char* det[2] = {
   "MM_6_3x2_2D", "MM_6_eq_2D"
   };
   const string eta[3] = {string("0.9316316147538235"),string("0.4316947267462241"),string("0.017454178683585186")};
   const int pt[14] = {1,2,3,4,5,6,7,8,9,10};
-  const int nhit[14] = {1,2,3,5};
+  const int nhit[4] = {1,2,3,5};
+  */
+  const char* det[1] = {
+  "MM_i2o3_2D"
+  };
+  const string eta[3] = {string("0.9316316147538235"),string("0.4316947267462241"),string("0.017454178683585186")};
+  const int pt[14] = {1,2,3,4,5,6,7,8,9,10};
+  const int nhit[1] = {1};
   cout << "detector nhit eta pt phi_res phi_resE theta_res theta_resE pt_res pt_resE p_res p_resE" << endl;
-  for (int i=0; i<2; i++)
+  for (int i=0; i<1; i++)
     for (int j=0; j<3; j++)
       for (int k=0; k<10; k++)
-      for (int l=0; l<4; l++)
+      for (int l=0; l<1; l++)
         GetAngularRes(dir, det[i], eta[j], pt[k], nhit[l]);
 }
