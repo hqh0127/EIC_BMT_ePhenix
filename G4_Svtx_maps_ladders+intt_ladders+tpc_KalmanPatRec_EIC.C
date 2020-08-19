@@ -450,7 +450,7 @@ double Svtx(PHG4Reco* g4Reco, double radius,
     example01->set_int_param("lengthviarapidity",0);
     example01->set_double_param("length", bmt_length);
     example01->set_double_param("deadzone", 0.2);
-    example01->set_int_param("nhit", 2);
+    example01->set_int_param("nhit", 1);
     example01->OverlapCheck(true);
     example01->set_int_param("use_2Dreadout",use_2Dreadout);
     g4Reco->registerSubsystem(example01);
