@@ -136,14 +136,15 @@ void RunAll(){
   const int pt[14] = {1,2,3,4,5,6,7,8,9,10};
   const int nhit[4] = {1,2,3,5};
   */
-  const char* det[1] = {
-  "MM_i2o3_2D"
+  const char* det[10] = {
+  "MM_i2o3_2D", "MM_i0o4_2D", "MM_m2o4_2D", "MM_i0o5_2D", "MM_m2o4_2D_mpgd100um_svtx10um", "MM_6_3x2_2D_mpgd100um_svtx10um", "MM_6_eq_2D_mpgd100um_svtx10um", 
+  "MM_m2o3_2D", "MM_m2o3_2D_mpgd100um_svtx10um", "TPC_mpgd100um_svtx10um"
   };
   const string eta[3] = {string("0.9316316147538235"),string("0.4316947267462241"),string("0.017454178683585186")};
   const int pt[14] = {1,2,3,4,5,6,7,8,9,10};
   const int nhit[1] = {1};
   cout << "detector nhit eta pt phi_res phi_resE theta_res theta_resE pt_res pt_resE p_res p_resE" << endl;
-  for (int i=0; i<1; i++)
+  for (int i=0; i<10; i++)
     for (int j=0; j<3; j++)
       for (int k=0; k<10; k++)
       for (int l=0; l<1; l++)
